@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Blog</title>
 </head>
@@ -16,13 +17,14 @@
       <div class="card mt-4">
         <div class="card-body">
           <h4 class="card-title"><%= article.title %></h4>
+          <div class="mb-2"><i class="fa fa-thumbs-up"></i> <%= article.likes %></div>
           <div class="card-subtitle text-muted mb-2">
             <%= article.createdAt.toLocaleDateString() %>
           </div>
-          <div class="card-text mb-2"><%- article.description %></div>
+          <div class="card-text mb-2"><%- article.description.slice(0,10) %>...</div>
           <a href="articles/<%= article.slug %>" class="btn btn-dark">Read More</a>
-          <a href="articles/edit/<%= article.id %>" class="btn btn-dark">Edit</a>
-          <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+          <a href="articles/edit/<%= article.slug %>" class="btn btn-dark">Edit</a>
+          <form action="/articles/<%= article.slug %>?_method=DELETE" method="POST" class="d-inline">
             <button type="submit" class="btn btn-dark">Delete</button>
           </form>
         </div>

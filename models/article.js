@@ -5,10 +5,20 @@ const slugify = require('slugify')
 const articleSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   description: {
-    type: String
+    type: String,
+    required: true
+  },
+  likes: {
+    type: Number,
+    default: 0,
+    validate : {
+      validator : Number.isInteger,
+      message   : '{VALUE} is not an integer value'
+    }
   },
   createdAt: {
     type: Date,
